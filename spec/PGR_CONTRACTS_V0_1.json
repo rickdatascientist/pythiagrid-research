@@ -1,0 +1,91 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:pythiagrid-research:efad:contracts:v0.1",
+  "title":"EFAD implementation-neutral contracts v0.1",
+  "description":"Baseline interoperable contracts for explicit authority, content-addressed evidence, bounded work state and least-authority capability adapters.",
+  "x-efad-principles":[
+    "authority is explicit and bounded",
+    "evidence is content-addressed",
+    "work in progress is bounded",
+    "unsafe or unprovable state fails closed",
+    "adapters expose typed least-authority capabilities",
+    "claims identify the predicate actually verified"
+  ],
+  "x-efad-semantic-invariants":[
+    "work_state.active_count must not exceed work_state.wip_limit",
+    "work_state.ANDON requires a non-empty blocker",
+    "evidence_receipt.receipt_digest is SHA-256 over canonical JSON excluding receipt_digest"
+  ],
+  "$defs":{
+    "digest":{
+      "type":"object",
+      "required":["algorithm","value"],
+      "properties":{
+        "algorithm":{"const":"sha256"},
+        "value":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+      },
+      "additionalProperties":false
+    },
+    "authority_envelope":{
+      "type":"object",
+      "required":["schema","authority_id","actor","action","scope","effect"],
+      "properties":{
+        "schema":{"const":"pgr.authority.v0_1"},
+        "authority_id":{"type":"string","minLength":1},
+        "actor":{"type":"string","minLength":1},
+        "action":{"type":"string","minLength":1},
+        "scope":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}},
+        "effect":{"enum":["ALLOW","DENY","NONE"]},
+        "constraints":{"type":"object"},
+        "parent_authority":{"type":["string","null"]}
+      },
+      "additionalProperties":false
+    },
+    "evidence_receipt":{
+      "type":"object",
+      "required":["schema","receipt_id","claim","predicate","sources","observations","verdict","receipt_digest"],
+      "properties":{
+        "schema":{"const":"pgr.evidence_receipt.v0_1"},
+        "receipt_id":{"type":"string","minLength":1},
+        "claim":{"type":"string","minLength":1},
+        "predicate":{"type":"string","minLength":1},
+        "sources":{"type":"array","minItems":1,"items":{"type":"object","required":["identity"],"properties":{"identity":{"type":"string","minLength":1},"digest":{"$ref":"#/$defs/digest"}},"additionalProperties":false}},
+        "observations":{"type":"array","minItems":1,"items":{"type":"object"}},
+        "verdict":{"enum":["PASS","FAIL","BLOCKED"]},
+        "limitations":{"type":"array","items":{"type":"string"}},
+        "receipt_digest":{"$ref":"#/$defs/digest"}
+      },
+      "additionalProperties":false
+    },
+    "work_state":{
+      "type":"object",
+      "required":["schema","work_id","state","wip_limit","active_count"],
+      "properties":{
+        "schema":{"const":"pgr.work_state.v0_1"},
+        "work_id":{"type":"string","minLength":1},
+        "state":{"enum":["READY","ACTIVE","BLOCKED","ANDON","PASS","FAIL"]},
+        "wip_limit":{"type":"integer","minimum":1},
+        "active_count":{"type":"integer","minimum":0},
+        "blocker":{"type":["string","null"]},
+        "next_safe_action":{"type":["string","null"]}
+      },
+      "allOf":[{"if":{"properties":{"state":{"const":"ACTIVE"}}},"then":{"properties":{"active_count":{"minimum":1}}}}],
+      "additionalProperties":false
+    },
+    "capability_adapter":{
+      "type":"object",
+      "required":["schema","capability_id","input_contract","output_contract","authority_required","side_effect_class"],
+      "properties":{
+        "schema":{"const":"pgr.capability_adapter.v0_1"},
+        "capability_id":{"type":"string","pattern":"^[a-z0-9][a-z0-9._-]*$"},
+        "input_contract":{"type":"string","minLength":1},
+        "output_contract":{"type":"string","minLength":1},
+        "authority_required":{"type":"boolean"},
+        "side_effect_class":{"enum":["READ_ONLY","REVERSIBLE_WRITE","IRREVERSIBLE_WRITE","EXTERNAL_EFFECT"]},
+        "arbitrary_code_execution":{"const":false},
+        "secret_material_in_payload":{"const":false}
+      },
+      "additionalProperties":false
+    }
+  }
+}
