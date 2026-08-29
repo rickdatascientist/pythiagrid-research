@@ -1,0 +1,81 @@
+{
+  "schema":"pgr.conformance_fixtures.v0_2",
+  "status":"A05_A06_PREPARED_NOT_TERMINAL",
+  "positive":[
+    {
+      "id":"AUTH-ALLOW-BOUNDED",
+      "contract":"authority_envelope",
+      "instance":{"schema":"pgr.authority.v0_1","authority_id":"auth-001","actor":"operator","action":"inspect","scope":["artifact:example"],"effect":"ALLOW","constraints":{"read_only":true},"parent_authority":null}
+    },
+    {
+      "id":"EVIDENCE-CONTENT-ADDRESSED",
+      "contract":"evidence_receipt",
+      "instance":{"schema":"pgr.evidence_receipt.v0_1","receipt_id":"receipt-001","claim":"example artifact inspected","predicate":"artifact exists at declared identity","sources":[{"identity":"synthetic:artifact:001","digest":{"algorithm":"sha256","value":"0000000000000000000000000000000000000000000000000000000000000000"}}],"observations":[{"kind":"exists","value":true}],"verdict":"PASS","limitations":["synthetic conformance fixture"],"receipt_digest":{"algorithm":"sha256","value":"c2d73cc6d7c4fb6625beeb1b3e77287feca5fd72e53d79ae1f34030091ce1750"}}
+    },
+    {
+      "id":"WORK-WIP1-ACTIVE",
+      "contract":"work_state",
+      "instance":{"schema":"pgr.work_state.v0_1","work_id":"work-001","state":"ACTIVE","wip_limit":1,"active_count":1,"blocker":null,"next_safe_action":"verify"}
+    },
+    {
+      "id":"WORK-ANDON-EXPLICIT",
+      "contract":"work_state",
+      "instance":{"schema":"pgr.work_state.v0_1","work_id":"work-andon-001","state":"ANDON","wip_limit":1,"active_count":0,"blocker":"synthetic unprovable state","next_safe_action":"inspect evidence"}
+    },
+    {
+      "id":"ADAPTER-READONLY",
+      "contract":"capability_adapter",
+      "instance":{"schema":"pgr.capability_adapter.v0_1","capability_id":"source.inspect","input_contract":"source.inspect.input.v1","output_contract":"source.inspect.output.v1","authority_required":false,"side_effect_class":"READ_ONLY","arbitrary_code_execution":false,"secret_material_in_payload":false}
+    }
+  ],
+  "negative":[
+    {
+      "id":"AUTH-MISSING-SCOPE",
+      "contract":"authority_envelope",
+      "must_fail":true,
+      "instance":{"schema":"pgr.authority.v0_1","authority_id":"auth-bad-001","actor":"operator","action":"write","effect":"ALLOW"}
+    },
+    {
+      "id":"EVIDENCE-BAD-DIGEST",
+      "contract":"evidence_receipt",
+      "must_fail":true,
+      "instance":{"schema":"pgr.evidence_receipt.v0_1","receipt_id":"receipt-bad-001","claim":"example artifact inspected","predicate":"artifact exists at declared identity","sources":[{"identity":"synthetic:artifact:001","digest":{"algorithm":"sha256","value":"0000000000000000000000000000000000000000000000000000000000000000"}}],"observations":[{"kind":"exists","value":true}],"verdict":"PASS","limitations":["synthetic negative fixture"],"receipt_digest":{"algorithm":"sha256","value":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"}}
+    },
+    {
+      "id":"WORK-ACTIVE-ZERO",
+      "contract":"work_state",
+      "must_fail":true,
+      "instance":{"schema":"pgr.work_state.v0_1","work_id":"work-bad-001","state":"ACTIVE","wip_limit":1,"active_count":0,"blocker":null,"next_safe_action":null}
+    },
+    {
+      "id":"WORK-WIP-OVERFLOW",
+      "contract":"work_state",
+      "must_fail":true,
+      "instance":{"schema":"pgr.work_state.v0_1","work_id":"work-bad-002","state":"ACTIVE","wip_limit":1,"active_count":2,"blocker":null,"next_safe_action":"reduce active work"}
+    },
+    {
+      "id":"WORK-ANDON-WITHOUT-BLOCKER",
+      "contract":"work_state",
+      "must_fail":true,
+      "instance":{"schema":"pgr.work_state.v0_1","work_id":"work-bad-andon","state":"ANDON","wip_limit":1,"active_count":0,"blocker":null,"next_safe_action":null}
+    },
+    {
+      "id":"ADAPTER-ARBITRARY-CODE",
+      "contract":"capability_adapter",
+      "must_fail":true,
+      "instance":{"schema":"pgr.capability_adapter.v0_1","capability_id":"unsafe.exec","input_contract":"unsafe.input.v1","output_contract":"unsafe.output.v1","authority_required":true,"side_effect_class":"EXTERNAL_EFFECT","arbitrary_code_execution":true,"secret_material_in_payload":false}
+    },
+    {
+      "id":"ADAPTER-SECRET-PAYLOAD",
+      "contract":"capability_adapter",
+      "must_fail":true,
+      "instance":{"schema":"pgr.capability_adapter.v0_1","capability_id":"unsafe.secret","input_contract":"unsafe.secret.input.v1","output_contract":"unsafe.secret.output.v1","authority_required":true,"side_effect_class":"REVERSIBLE_WRITE","arbitrary_code_execution":false,"secret_material_in_payload":true}
+    }
+  ],
+  "semantic_invariants":[
+    "work_state.active_count must not exceed work_state.wip_limit",
+    "work_state.ANDON requires a non-empty blocker",
+    "evidence_receipt.receipt_digest is SHA-256 over canonical JSON excluding receipt_digest"
+  ],
+  "terminal_test_requirement":"Pinned jsonschema 4.26.0 must prove every positive fixture valid and every negative fixture invalid, including the listed semantic invariants, before A06 PASS."
+}
