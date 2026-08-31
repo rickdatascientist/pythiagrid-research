@@ -10,7 +10,6 @@
   ],
   "required_reconstruction_risk": "LOW",
   "files": {
-    ".github/workflows/publication-gate.yml": {"class": "CI_CONTROL", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
     "LICENSE": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
     "PUBLICATION_POLICY.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
     "README.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
