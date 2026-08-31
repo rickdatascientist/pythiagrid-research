@@ -29,6 +29,22 @@ The v0.1 candidate contains:
 
 The release candidate intentionally does **not** prescribe an agent framework, LLM provider, durable-execution backend, evaluation framework, or provenance vendor.
 
+## Public-private IP firewall
+
+This repository is the public interoperability surface, not the Mary/PythiaGrid product implementation. Public material is limited to implementation-neutral standards, synthetic fixtures, minimal reference tooling, and public documentation.
+
+Production runtime/orchestration, prompts, proprietary planning/compiler logic, memory implementation, model-routing/evaluation/recovery heuristics, production adapters, credentials, deployment topology, proprietary data and other differentiating implementation details remain outside this repository.
+
+Every tracked public file must be classified in `publication_manifest.json` and must pass `tools/publication_gate.py`. The gate defaults to denial for unclassified files and checks configured private-path, secret, private-identifier, file-type and reconstruction-risk declarations.
+
+See `PUBLICATION_POLICY.md` for the normative boundary and human reconstruction-risk test.
+
+Run the publication gate before any release:
+
+```bash
+python tools/publication_gate.py
+```
+
 ## Core invariants
 
 - Explicit authority beats inferred authority.
@@ -66,8 +82,8 @@ Passing EFAD conformance is a claim about these predicates only. It is not a cla
 
 ## Project status
 
-This directory is a **clean-room release candidate template**, not a published v0.1 release. Final publication remains gated on conformance, leakage/provenance checks, a fresh standalone repository, and finalization of the copyright holder in the MIT licence notice.
+This repository is the clean-room public EFAD surface. Publication remains gated on conformance, leakage/reconstruction-risk checks, manifest completeness, provenance and licence review. No private Mary/PythiaGrid implementation is authorized for publication through this repository.
 
 ## Licence
 
-The intended code/specification licence for v0.1 is the MIT License. The release bundle includes a licence template; it must not be treated as final until the copyright-holder field is resolved.
+The material published in this repository is licensed under the MIT License in `LICENSE`. That licence applies only to the material actually published here and does not grant rights to private PythiaGrid/Mary code, confidential information, separately licensed assets, trademarks, hosted services, datasets, prompts or model weights that are not included in this repository.

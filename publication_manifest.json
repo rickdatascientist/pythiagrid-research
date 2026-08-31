@@ -1,0 +1,24 @@
+{
+  "schema": "pgr.publication_manifest.v1",
+  "policy": "PUBLICATION_POLICY.md",
+  "allowed_classes": [
+    "PUBLIC_STANDARD",
+    "SYNTHETIC_FIXTURE",
+    "REFERENCE_TOOLING",
+    "PUBLIC_DOC",
+    "CI_CONTROL"
+  ],
+  "required_reconstruction_risk": "LOW",
+  "files": {
+    "LICENSE": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "PUBLICATION_POLICY.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "README.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "SECURITY.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "UPSTREAM_REFERENCES.md": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "publication_manifest.json": {"class": "PUBLIC_DOC", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "spec/PGR_CONFORMANCE_FIXTURES_V0_1.json": {"class": "SYNTHETIC_FIXTURE", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "spec/PGR_CONTRACTS_V0_1.json": {"class": "PUBLIC_STANDARD", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "tools/conformance.py": {"class": "REFERENCE_TOOLING", "contains_private_implementation": false, "reconstruction_risk": "LOW"},
+    "tools/publication_gate.py": {"class": "REFERENCE_TOOLING", "contains_private_implementation": false, "reconstruction_risk": "LOW"}
+  }
+}
