@@ -1,0 +1,56 @@
+name: Mary Beta Evidence
+description: Submit sanitized beta UX evidence from a Mary Kin. Do not include prompts, chat content, raw audio, filenames, paths, or personal information.
+title: "[Mary Beta] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Beta-only evidence contract.** This form is for invited Mary beta participants and is not the final user-data contract.
+
+        Mary should prefill only sanitized product evidence. Your GitHub username is visible with the issue. Do not add prompts, chat content, raw audio, filenames, file paths, IP/device names, email addresses, or other personal information.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Product surface
+      options:
+        - First run
+        - Voice STT
+        - Voice TTS
+        - Chat
+        - Case run
+        - Work
+        - Results
+        - Control Tower
+        - Navigation
+        - Performance
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - Worked well
+        - Needs improvement
+        - Failed
+        - Pass
+    validations:
+      required: true
+  - type: textarea
+    id: sanitized_metrics
+    attributes:
+      label: Sanitized Mary evidence
+      description: Paste only the Mary-generated allow-listed summary. Do not add conversation content or personal information.
+      placeholder: "duration_ms: 850\nartifact_count: 7\nmodel_tier: LOCAL_STANDARD_7B"
+    validations:
+      required: true
+  - type: checkboxes
+    id: beta_consent
+    attributes:
+      label: Beta evidence consent
+      options:
+        - label: I understand this is beta-only evidence and my GitHub username will be visible with this issue.
+          required: true
+        - label: I confirm I did not add prompts, chat content, raw audio, filenames/paths, or personal information.
+          required: true
