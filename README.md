@@ -9,6 +9,10 @@ EFAD is not a model, agent framework, workflow engine, or benchmark suite. It de
 3. **Work state** — what is active, blocked, failed, or complete under an explicit WIP limit and ANDON stop condition.
 4. **Capability boundaries** — typed adapters that declare side-effect class and reject arbitrary-code or secret-bearing payloads by default.
 
+## Research programme
+
+The [three-problem research prospectus](RESEARCH_PROGRAM.md) explores independently verifiable agent work, recovery under ambiguous failures, and safely admitted reusable skills. **All three are hypotheses, not qualified scientific or production claims.**
+
 ## Why this exists
 
 Autonomous development systems can generate large volumes of activity while leaving a weak answer to a simple question: **what exactly was authorized, what exactly happened, and what evidence proves the claim?**
