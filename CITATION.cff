@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use the public EFAD specification or synthetic conformance tooling, cite this research repository. This is not a citation to an accepted peer-reviewed paper."
+title: "PythiaGrid Research: Evidence-First Autonomous Development"
+type: software
+authors:
+  - family-names: Sarkar
+    given-names: Rick
+repository-code: "https://github.com/rickdatascientist/pythiagrid-research"
+url: "https://github.com/rickdatascientist/pythiagrid-research"
+license: MIT
+abstract: "An implementation-neutral public research surface for bounded agent authority, evidence receipts, work state and typed capabilities, with a programme for independently verifiable AI systems."

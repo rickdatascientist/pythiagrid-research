@@ -1,89 +1,107 @@
-# PythiaGrid Research — EFAD v0.1
+# PythiaGrid Research
 
-**Evidence-First Autonomous Development (EFAD)** is an implementation-neutral specification for making autonomous software work inspectable, bounded, and fail-closed.
+### **Autonomous systems should prove their work.**
 
-EFAD is not a model, agent framework, workflow engine, or benchmark suite. It defines a small interoperability layer that lets those systems prove four things consistently:
+**Open research into evidence-carrying AI agents, recoverable execution, and verifiable skill evolution.**
 
-1. **Authority** — who or what authorized an action, with explicit scope and constraints.
-2. **Evidence** — what was observed, which predicate was tested, and which source identities support the verdict.
-3. **Work state** — what is active, blocked, failed, or complete under an explicit WIP limit and ANDON stop condition.
-4. **Capability boundaries** — typed adapters that declare side-effect class and reject arbitrary-code or secret-bearing payloads by default.
+[Explore the research programme](RESEARCH_PROGRAM.md) · [Read EFAD v0.1 contracts](spec/PGR_CONTRACTS_V0_1.json) · [Run the conformance tooling](#run-the-public-specification) · [Publication and IP policy](PUBLICATION_POLICY.md) · [Research website source](docs/index.html) · [Publication roadmap](PUBLICATION_ROADMAP.md)
 
-## Why this exists
+> **North star:** Build AI systems that do not simply *claim* success. They preserve authority, retain verifiable evidence, admit uncertainty, recover safely, and earn additional capabilities through independently tested improvements.
 
-Autonomous development systems can generate large volumes of activity while leaving a weak answer to a simple question: **what exactly was authorized, what exactly happened, and what evidence proves the claim?**
+**Research lead and credited author:** **Rick Sarkar**  
+**Licence:** [MIT](LICENSE) for the material **actually contained in this public repository**. This does not license the private Mary/PythiaGrid product, models, datasets or unpublished mechanisms.  
+**Research maturity:** Open specification and synthetic conformance tooling available. The three scientific tracks below are **active hypotheses**, not established state-of-the-art results or peer-reviewed publications.
 
-EFAD treats that question as a protocol problem rather than a dashboard problem. The intended unit of progress is not a status update; it is a bounded claim backed by content-addressed evidence.
+---
 
-## v0.1 scope
+## One research thesis, three testable problems
 
-The v0.1 candidate contains:
+| Research track | Scientific problem | Current evidence state |
+| :-- | :-- | :-- |
+| **01 · Evidence-Carrying Agent Work** | Can an independently auditable claim survive competing agent attempts without promoting unsupported outcomes? | EFAD contracts and public conformance fixtures available; paper-level comparative superiority **unproven** |
+| **02 · Recoverable Agents Benchmark** | How can we evaluate correctness after crashes, ambiguous acknowledgements, retries and restoration? | Research protocol proposed; public fault-injected comparative benchmark **not yet released** |
+| **03 · Verified Skill Commons** | Can community-created skills improve agents without permission drift, benchmark manipulation or hidden regressions? | Research protocol proposed; held-out multi-source qualification **not yet executed** |
 
-- implementation-neutral JSON contracts for authority, evidence receipts, work state, and capability adapters;
-- positive and negative conformance fixtures;
-- a deterministic conformance gate;
-- a publication leakage/reconstruction-risk gate;
-- provenance and upstream-reference metadata;
-- synthetic examples only;
-- no vendored third-party source code.
+[Read hypotheses, baselines, falsification criteria, and research ethics →](RESEARCH_PROGRAM.md)
 
-The release candidate intentionally does **not** prescribe an agent framework, LLM provider, durable-execution backend, evaluation framework, or provenance vendor.
+### The research loop
 
-## Public-private IP firewall
+```text
+RESEARCH QUESTION
+      │
+      ▼
+HYPOTHESIS + PRIOR ART
+      │
+      ▼
+FROZEN TASK / INDEPENDENT ORACLE
+      │
+      ▼
+AGENTS, BASELINES, ADVERSARIAL CASES
+      │
+      ▼
+EVIDENCE + CONTRADICTION AUDIT
+      │
+      ▼
+REPRODUCIBILITY + INDEPENDENT REVIEW
+      │
+      ▼
+PUBLIC RESULT OR HONEST ABSTENTION
+```
 
-This repository is the public interoperability surface, not the Mary/PythiaGrid product implementation. Public material is limited to implementation-neutral standards, synthetic fixtures, minimal reference tooling, and public documentation.
+**A pass in an implementation test is not evidence of superiority.** Any published comparative claim must include the exact test set, independent baseline, oracle, denominators, negative cases, reproducibility recipe and uncertainty. Findings that a simple evidence-aware comparator matches a more elaborate method count as useful negative research evidence, not as a marketing success.
 
-Production runtime/orchestration, prompts, proprietary planning/compiler logic, memory implementation, model-routing/evaluation/recovery heuristics, production adapters, credentials, deployment topology, proprietary data and other differentiating implementation details remain outside this repository.
+## Evidence-First Autonomous Development (EFAD)
 
-Every tracked public file must be classified in `publication_manifest.json` and must pass `tools/publication_gate.py`. The gate defaults to denial for unclassified files and checks configured private-path, secret, private-identifier, file-type and reconstruction-risk declarations.
+EFAD is a small **interoperability contract**, not another agent framework.
 
-See `PUBLICATION_POLICY.md` for the normative boundary and human reconstruction-risk test.
+- **Authority:** what action was approved, for whom and within which bounds.
+- **Evidence:** which predicate was checked, from which immutable source and observation.
+- **Work state:** READY, ACTIVE, BLOCKED, ANDON, PASS or FAIL under a declared work-in-progress limit.
+- **Capabilities:** typed least-authority adapters that declare side-effect class.
 
-Run the publication gate before any release:
+The v0.1 public surface includes JSON contracts, synthetic positive/negative cases, deterministic conformance tooling, source references and a default-deny publication gate. These tools evaluate *specific predicates*; they cannot certify general agent safety.
+
+### Run the public specification
 
 ```bash
+python -m pip install -r requirements-research.txt
+python tools/conformance.py --spec spec/PGR_CONTRACTS_V0_1.json --fixtures spec/PGR_CONFORMANCE_FIXTURES_V0_1.json --out efad_conformance_receipt.json
 python tools/publication_gate.py
 ```
 
-## Core invariants
+The publication gate checks public file classification, configured private-identifier/secret patterns and approved file types. It **does not replace** independent legal/IP or semantic disclosure review.
 
-- Explicit authority beats inferred authority.
-- Claims identify the predicate actually verified.
-- Evidence carries immutable source identities and SHA-256 digests where applicable.
-- Unsafe or unprovable states fail closed.
-- Work in progress is bounded and machine-readable.
-- ANDON is a first-class terminal/stop state, not a log message.
-- Capability adapters declare side effects before execution.
-- Arbitrary code execution and secret material are outside the baseline adapter contract.
-- Public examples are synthetic and must not depend on private implementation history.
+## Papers and scientific status
 
-## Interoperability posture
+**Working manuscript 01 — _Evidence-Carrying Synthesis for Autonomous Agents: Preserving Verified Partial Progress Without Promoting Unsupported Claims_.**
 
-EFAD is designed to sit above existing tools rather than replace them. The research process evaluates permissively licensed references across four roles:
+- **Lead author:** Rick Sarkar (author responsibility and final submission approval remain human).
+- **Status:** internal technical research report / manuscript candidate. **Not peer-reviewed, not accepted, not an arXiv preprint.**
+- **Observed engineering boundary:** tests of a local synthesizer motivated the method, but a separately coded evidence-aware comparator matched its decisions on visible synthetic cases; therefore no comparative performance or novelty advantage is claimed here.
+- **Needed:** a verified strong published-method baseline, an independently authored multi-domain benchmark, sealed held-out evaluation, replicated runs, quantitative uncertainty and rights-approved public release.
 
-- evaluation;
-- AI security evaluation;
-- durable execution;
-- provenance/security-health.
+**Publication strategy:** a mature empirical contribution could be considered for TMLR, NeurIPS/ICLR or an appropriate peer-reviewed venue after scientific qualification; a substantial reusable public research-software package may eventually qualify for JOSS. GitHub is a project/research distribution platform, **not peer review**.
 
-Upstream tools remain optional references or adapters. Their source is not copied into this project, and their code licences do not imply rights to datasets, prompts, model weights, hosted services, trademarks, or other separately governed assets.
+The current manuscript and private implementation **are not copied to this public repository**. Use the [research agenda](RESEARCH_PROGRAM.md) to see what can be independently verified and contributed publicly.
 
-## Conformance model
+## Why this matters to Mary
 
-A conforming implementation should be able to prove at least:
+PythiaGrid Research is the **open scientific and interoperability layer** informing the long-term vision for Mary. The proposed research workflow separates a researcher's private workspace (for hypotheses, experiments and manuscript review) from a Commons surface (for permission-cleared benchmarks and contributions).
 
-- positive authority/evidence/work-state/adapter fixtures validate;
-- deliberately malformed or unsafe fixtures fail;
-- evidence receipts are deterministic and content-addressable;
-- export contents contain no configured private identifiers, local paths, secret-like strings, or direct private-source blob reuse;
-- release provenance binds the published artifact to an exact source identity.
+**Research findings do not automatically alter or authorize the Mary production system.** Public specifications, study results and product capabilities have independent review and release gates.
 
-Passing EFAD conformance is a claim about these predicates only. It is not a claim that an autonomous system is generally safe, correct, or reliable.
+## Contribute carefully
 
-## Project status
+Useful contributions include verified prior art; synthetic cases that disprove a claim; fair baseline definitions; reproducibility reviews; and concrete counterexamples to authority, evidence and dependency assumptions. Please do **not** post secrets, private run logs, user records, proprietary Mary source, or other people's licensed datasets.
 
-This repository is the clean-room public EFAD surface. Publication remains gated on conformance, leakage/reconstruction-risk checks, manifest completeness, provenance and licence review. No private Mary/PythiaGrid implementation is authorized for publication through this repository.
+For disclosure or security concerns, see [SECURITY.md](SECURITY.md). For the public/private IP boundary, see [PUBLICATION_POLICY.md](PUBLICATION_POLICY.md). For referenced upstream work, see [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md).
 
-## Licence
+## Citation, authorship and licence
 
-The material published in this repository is licensed under the MIT License in `LICENSE`. That licence applies only to the material actually published here and does not grant rights to private PythiaGrid/Mary code, confidential information, separately licensed assets, trademarks, hosted services, datasets, prompts or model weights that are not included in this repository.
+Research direction, copyright and credited authorship: **Rick Sarkar**. A machine-readable [CITATION.cff](CITATION.cff) identifies the public project. Any future scholarly paper will disclose AI-assisted preparation consistent with the selected venue, and all named human authors must confirm intellectual responsibility.
+
+The public repository's [MIT licence](LICENSE) applies only to its released code and documentation. Private Marykin Labs/PythiaGrid technology, confidential material, names/trademarks, third-party publications and separately licensed assets are not granted by MIT.
+
+---
+
+*Evidence before assertion. Recovery before repetition. Verification before promotion.*

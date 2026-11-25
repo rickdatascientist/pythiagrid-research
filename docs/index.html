@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10182b">
+  <meta name="description" content="PythiaGrid Research by Rick Sarkar: evidence-first autonomous systems, recoverable agents, and verified skill evolution. An open MIT-licensed research programme.">
+  <title>PythiaGrid Research — From plausible agents to provable work</title>
+  <style>
+    :root{color-scheme:dark;--navy:#0c1424;--panel:#17243b;--panel2:#1b2940;--lav:#c7b9ff;--mint:#a9ebd4;--text:#edf0f9;--muted:#a9b5ca;--line:#33425a;--content:1130px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--navy);color:var(--text);font:16px/1.62 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:var(--mint);text-underline-offset:4px}a:hover{color:#fff}a:focus-visible{outline:2px solid var(--mint);outline-offset:4px;border-radius:3px}
+    .skip{position:absolute;left:-999px;top:8px}.skip:focus{left:12px;z-index:9;background:#17243b;padding:9px}
+    .wrap{max-width:var(--content);margin:auto;padding:0 28px}
+    header{border-bottom:1px solid #2b3c56;background:rgba(12,20,36,.93)}
+    header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:79px}
+    .brand{font-size:15px;letter-spacing:.09em;font-weight:800;color:#fff;text-decoration:none}.brand span{color:var(--mint)}
+    nav{display:flex;flex-wrap:wrap;gap:23px}nav a{color:#d5dfec;font-size:13px;font-weight:650;text-decoration:none}
+    .hero{position:relative;overflow:hidden;padding:92px 0 80px;background:radial-gradient(ellipse at 73% 9%,#29355b 0%,transparent 58%),linear-gradient(135deg,#10182d,#121d31 60%,#0c1424)}
+    .eyebrow{font-size:12px;letter-spacing:.22em;font-weight:750;color:var(--mint);text-transform:uppercase}
+    h1,h2,h3,p{margin-top:0}h1{max-width:890px;font-size:clamp(40px,6vw,76px);line-height:1.06;letter-spacing:-.047em;margin:18px 0 22px}
+    .accent{color:var(--lav)}.subtitle{color:#c9d4e5;max-width:720px;font-size:20px;line-height:1.5}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}.action{padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:720;font-size:14px;border:1px solid var(--line);color:#f3f6fc;background:#1a2943}
+    .action.primary{background:var(--mint);border-color:var(--mint);color:#11243d}.action:hover{background:#354663;color:#fff}
+    .action.primary:hover{background:#e1fff1;color:#132236}
+    .hero-note{color:#b5c3d5;font-size:13px;margin-top:30px;max-width:790px}
+    .hero-note strong{color:#ecf2ff}
+    section{padding:76px 0;border-top:1px solid #263448}section:first-of-type{border-top:none}
+    .label{font-size:12px;font-weight:850;letter-spacing:.19em;color:var(--mint);text-transform:uppercase;margin:0 0 14px}
+    h2{font-size:clamp(27px,3.6vw,43px);line-height:1.16;letter-spacing:-.03em;margin-bottom:20px;max-width:760px}
+    .intro{color:#c4d0e0;max-width:850px;font-size:17px;margin-bottom:30px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(155deg,var(--panel),#111d30);border:1px solid var(--line);border-radius:14px;padding:25px;min-height:270px}
+    .n{font-size:13px;font-weight:850;color:var(--mint);letter-spacing:.15em;margin-bottom:20px}
+    h3{font-size:22px;line-height:1.23;letter-spacing:-.02em;margin:0 0 15px}.card p{font-size:14px;color:#c4cfe0}
+    .status{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.07em;border:1px solid #576179;background:#24304b;border-radius:30px;padding:4px 10px;color:#e5dfff}
+    .stateline{border-top:1px solid var(--line);padding-top:18px;margin-top:20px}
+    .diagram{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+    .step{background:#15233a;border:1px solid #394c69;padding:17px 12px;min-height:110px;border-radius:9px;text-align:center;color:#dfe6f4;font-weight:700;font-size:13px;display:flex;flex-direction:column;justify-content:center}
+    .step em{font-style:normal;color:var(--mint);font-size:12px;letter-spacing:.09em;margin-bottom:5px}
+    .callout{background:linear-gradient(110deg,#242b47,#1b3041);border-left:4px solid var(--lav);padding:25px 30px;border-radius:4px 12px 12px 4px;margin-top:26px;color:#e8eaff}
+    .two{display:grid;grid-template-columns:1.2fr .8fr;gap:35px}
+    .contract{border:1px solid var(--line);border-radius:13px;padding:24px;background:#131f32}.contract strong{color:#e5dcff}
+    .facts{margin:0;padding:0;list-style:none}.facts li{padding:12px 0;border-bottom:1px solid #30405a;color:#c7d1df}.facts li:last-child{border-bottom:0}
+    .facts b{color:#f2f4fb}
+    .code{background:#071322;border:1px solid #32435d;padding:19px 22px;border-radius:9px;overflow:auto;color:#a9ebd4;font-size:14px}
+    .publinks{display:flex;flex-wrap:wrap;gap:14px}
+    .foot{padding:45px 0 55px;border-top:1px solid var(--line);color:#aab7ca;font-size:13px}
+    .foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px}.foot strong{color:#fff}
+    @media(max-width:820px){.grid,.two{grid-template-columns:1fr}.diagram{grid-template-columns:repeat(2,1fr)}.hero{padding:66px 0}header .wrap{align-items:flex-start;flex-direction:column;padding-top:18px;padding-bottom:18px;gap:9px}nav{gap:14px}}
+    @media(max-width:460px){.wrap{padding:0 19px}.grid{gap:12px}.diagram{grid-template-columns:1fr}.step{min-height:67px}h1{font-size:43px}.subtitle{font-size:17px}section{padding:58px 0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to research content</a>
+  <header><div class="wrap">
+    <a class="brand" href="#top">PYTHIA<span>GRID</span> / RESEARCH</a>
+    <nav aria-label="Primary navigation"><a href="#programme">Programme</a><a href="#efad">EFAD</a><a href="#publications">Publications</a><a href="#about">About</a><a href="https://github.com/rickdatascientist/pythiagrid-research">GitHub</a></nav>
+  </div></header>
+  <main id="main">
+    <div class="hero" id="top"><div class="wrap">
+      <p class="eyebrow">An open research programme by Rick Sarkar</p>
+      <h1>From plausible agents<br>to <span class="accent">provable work.</span></h1>
+      <p class="subtitle">What would change if autonomous AI could demonstrate the evidence behind its actions, recover without repeating mistakes, and improve without silently gaining new authority?</p>
+      <div class="actions">
+        <a class="action primary" href="https://github.com/rickdatascientist/pythiagrid-research/blob/main/RESEARCH_PROGRAM.md">Explore the research</a>
+        <a class="action" href="https://github.com/rickdatascientist/pythiagrid-research">View the open specification</a>
+      </div>
+      <p class="hero-note"><strong>Scientific status:</strong> public MIT-licensed specification and synthetic conformance fixtures. The three research tracks are falsifiable hypotheses, not established breakthroughs, accepted papers or proof of production safety.</p>
+    </div></div>
+    <section id="programme"><div class="wrap">
+      <p class="label">The research agenda</p>
+      <h2>Three scientific problems. One coherent direction.</h2>
+      <p class="intro">We investigate how agents can retain demonstrably correct work, confront uncertain recovery, and accept community capabilities only when the supporting evidence stands up to scrutiny.</p>
+      <div class="grid">
+        <article class="card"><p class="n">01 / EVIDENCE</p><h3>Evidence-Carrying Agent Work</h3><p>Can an independently auditable claim survive several competing attempts, missing proof, and conflicting artifacts without becoming an unsupported success story?</p><div class="stateline"><span class="status">Comparative research pending</span></div></article>
+        <article class="card"><p class="n">02 / RECOVERY</p><h3>Recoverable Agents Benchmark</h3><p>How do agents behave when they crash after an effect, lose an acknowledgement, retry an operation, or recover an incomplete state?</p><div class="stateline"><span class="status">Fault-injection study proposed</span></div></article>
+        <article class="card"><p class="n">03 / EVOLUTION</p><h3>Verified Skill Commons</h3><p>Can independently contributed skills improve held-out results while respecting permissions, provenance, rollback, and secure admission?</p><div class="stateline"><span class="status">Research hypothesis</span></div></article>
+      </div>
+    </div></section>
+    <section><div class="wrap">
+      <p class="label">How we separate work from claims</p>
+      <h2>A benchmark result should be harder to invent than to verify.</h2>
+      <div class="diagram" aria-label="Research stages">
+        <div class="step"><em>01</em>Prior art and falsifiable hypothesis</div>
+        <div class="step"><em>02</em>Frozen tasks and independent ground truth</div>
+        <div class="step"><em>03</em>Strong competing baselines</div>
+        <div class="step"><em>04</em>Reproduction and negative results</div>
+        <div class="step"><em>05</em>Independent scientific review</div>
+      </div>
+      <div class="callout"><strong>Important negative evidence.</strong> In early visible synthetic engineering checks, a separately coded evidence-aware baseline matched the candidate synthesizer. This does <em>not</em> establish novelty or superiority; it sharpens the need for an independently designed, stronger study. The private experimental system is not included in this public specification.</div>
+    </div></section>
+    <section id="efad"><div class="wrap two">
+      <div>
+        <p class="label">Available now</p><h2>EFAD v0.1: a minimal interoperability contract.</h2>
+        <p class="intro">Evidence-First Autonomous Development is not a competing model, agent framework, or orchestration engine. It is a public language for declaring narrow authority, testing evidence, and representing bounded work.</p>
+        <div class="publinks"><a href="https://github.com/rickdatascientist/pythiagrid-research/blob/main/spec/PGR_CONTRACTS_V0_1.json">View contracts</a><a href="https://github.com/rickdatascientist/pythiagrid-research/blob/main/PUBLICATION_POLICY.md">Publication firewall</a></div>
+      </div>
+      <div class="contract"><ul class="facts">
+        <li><b>Authority</b> — explicit actor, action and scope</li>
+        <li><b>Evidence</b> — predicate, observations and source identity</li>
+        <li><b>Work state</b> — progress and ANDON stop semantics</li>
+        <li><b>Capability</b> — typed boundaries and side-effect class</li>
+      </ul></div>
+    </div></section>
+    <section id="publications"><div class="wrap">
+      <p class="label">Papers and evidence</p><h2>Publication is an outcome of proof, not a status badge.</h2>
+      <p class="intro"><strong>Working manuscript 01:</strong> <em>Evidence-Carrying Synthesis for Autonomous Agents: Preserving Verified Partial Progress Without Promoting Unsupported Claims.</em> The manuscript remains an internal technical report. It is not peer reviewed, not an arXiv preprint, and not a published performance result.</p>
+      <p>The research programme is intended to support full, independently reproducible empirical papers and potentially substantial reusable research software. Venue possibilities include TMLR, leading AI conferences, and JOSS when the relevant eligibility and scientific standards are actually met.</p>
+      <p>Research authorship and public-project credit: <strong>Rick Sarkar</strong>. AI assistance is not scientific peer review; future manuscripts must disclose assistance under their chosen venue's policy.</p>
+      <div class="code"><code>python -m pip install -r requirements-research.txt<br>python tools/conformance.py --spec spec/PGR_CONTRACTS_V0_1.json --fixtures spec/PGR_CONFORMANCE_FIXTURES_V0_1.json --out efad_conformance_receipt.json<br>python tools/publication_gate.py</code></div>
+    </div></section>
+    <section id="about"><div class="wrap">
+      <p class="label">Future of Mary and PythiaGrid</p><h2>A research surface, not a shortcut around safety.</h2>
+      <p class="intro">PythiaGrid Research provides an open scientific layer for questions arising from Mary. A researcher's workspace can help explore hypotheses, experiments and manuscripts; a separate Commons experience can accept permission-cleared benchmarks and verified community contributions.</p>
+      <p>Those are research design directions—not a claim that the full workflow is already deployed. Published contracts, scientific evaluation, and the Mary product each retain independent approval gates.</p>
+      <p><strong>Licence:</strong> MIT for the contents of the public repository. No private code, credentials, user records, product-specific algorithms, third-party works, or Mary trademarks are licensed by this research release.</p>
+    </div></section>
+  </main>
+  <footer class="foot"><div class="wrap"><div><strong>PythiaGrid Research</strong> · Rick Sarkar · MIT public materials</div><div><a href="https://github.com/rickdatascientist/pythiagrid-research">GitHub</a> · <a href="https://github.com/rickdatascientist/pythiagrid-research/blob/main/LICENSE">MIT License</a> · <a href="https://github.com/rickdatascientist/pythiagrid-research/blob/main/SECURITY.md">Security</a></div></div></footer>
+</body>
+</html>
