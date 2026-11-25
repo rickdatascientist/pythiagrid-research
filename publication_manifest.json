@@ -15,6 +15,11 @@
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
+    "CITATION.cff": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
     "LICENSE": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
@@ -41,6 +46,11 @@
       "reconstruction_risk": "LOW"
     },
     "UPSTREAM_REFERENCES.md": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
+    "docs/index.html": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
