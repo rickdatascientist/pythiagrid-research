@@ -84,6 +84,25 @@ The publication gate checks public file classification, configured private-ident
 
 The current manuscript and private implementation **are not copied to this public repository**. Use the [research agenda](RESEARCH_PROGRAM.md) to see what can be independently verified and contributed publicly.
 
+## Continuously checked open-source landscape
+
+We operate a deliberately small, **read-only** [Agent Skills frontier monitor](tools/skills_watch.py) covering ten identified public GitHub projects spanning standards, discovery, evaluation, pre-install checks, routing and agent-native tools. It produces an evidence-linked, timestamped snapshot—not a ranking, safety certificate, market-share estimate, or claim of scientific novelty.
+
+- [See scheduled source snapshots and their run summaries](https://github.com/rickdatascientist/pythiagrid-research/actions/workflows/skills-frontier-watch.yml).
+- **Cadence:** every six hours on GitHub-hosted CI, subject to GitHub scheduling and availability; tests also run on relevant changes.
+- **No remote skill installation:** metadata-only GitHub API calls; no execution of third-party Skills, model API, production access, user data or write token.
+- **Quality control:** seven offline validation tests, source-identity validation, a fail-closed incomplete-source status and the existing publication IP firewall.
+- **Honesty:** repository stars are not evidence of skill quality, performance or adoption by Mary.
+
+Reproduce a snapshot (requires access to GitHub's public API):
+
+```bash
+python -m unittest tools/test_skills_watch.py -v
+python tools/skills_watch.py --strict --json
+```
+
+This small observatory is not the unreleased Check Before Injection research candidate; the latter remains subject to separate scientific and publication gates.
+
 ## Why this matters to Mary
 
 PythiaGrid Research is the **open scientific and interoperability layer** informing the long-term vision for Mary. The proposed research workflow separates a researcher's private workspace (for hypotheses, experiments and manuscript review) from a Commons surface (for permission-cleared benchmarks and contributions).
