@@ -15,6 +15,11 @@
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
+    ".github/workflows/skills-frontier-watch.yml": {
+      "class": "CI_CONTROL",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
     "CITATION.cff": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
@@ -81,6 +86,16 @@
       "reconstruction_risk": "LOW"
     },
     "tools/publication_gate.py": {
+      "class": "REFERENCE_TOOLING",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
+    "tools/skills_watch.py": {
+      "class": "REFERENCE_TOOLING",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
+    "tools/test_skills_watch.py": {
       "class": "REFERENCE_TOOLING",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
