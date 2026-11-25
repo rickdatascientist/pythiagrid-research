@@ -4,7 +4,7 @@
 
 **Open research into evidence-carrying AI agents, recoverable execution, and verifiable skill evolution.**
 
-[Explore the research programme](RESEARCH_PROGRAM.md) · [Read EFAD v0.1 contracts](spec/PGR_CONTRACTS_V0_1.json) · [Run the conformance tooling](#run-the-public-specification) · [Publication and IP policy](PUBLICATION_POLICY.md) · [Research website source](docs/index.html)
+[Explore the research programme](RESEARCH_PROGRAM.md) · [Read EFAD v0.1 contracts](spec/PGR_CONTRACTS_V0_1.json) · [Run the conformance tooling](#run-the-public-specification) · [Publication and IP policy](PUBLICATION_POLICY.md) · [Research website source](docs/index.html) · [Publication roadmap](PUBLICATION_ROADMAP.md)
 
 > **North star:** Build AI systems that do not simply *claim* success. They preserve authority, retain verifiable evidence, admit uncertainty, recover safely, and earn additional capabilities through independently tested improvements.
 
