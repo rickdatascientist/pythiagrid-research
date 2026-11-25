@@ -40,6 +40,11 @@
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
+    "PUBLICATION_ROADMAP.md": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
     "README.md": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
