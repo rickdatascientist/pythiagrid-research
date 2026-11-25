@@ -1,0 +1,47 @@
+name: Open Science — Skills Frontier Watch
+
+on:
+  pull_request:
+    paths:
+      - "tools/skills_watch.py"
+      - "tools/test_skills_watch.py"
+      - ".github/workflows/skills-frontier-watch.yml"
+      - "publication_manifest.json"
+  push:
+    branches: [main]
+    paths:
+      - "tools/skills_watch.py"
+      - "tools/test_skills_watch.py"
+      - ".github/workflows/skills-frontier-watch.yml"
+      - "publication_manifest.json"
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-open-science-frontier
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    name: bounded-public-source-watch
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Fetch public research snapshot source
+        uses: actions/checkout@v4
+      - name: Use Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline adversarial source and metadata tests
+        run: python -m unittest tools/test_skills_watch.py -v
+      - name: Live bounded read-only Github metadata audit
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/skills_watch.py --strict --json
+      - name: Reject unclassified or private research material
+        run: python tools/publication_gate.py
