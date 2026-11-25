@@ -28,7 +28,7 @@ PROJECTS = (
     ("obra/superpowers", "Developer workflow"),
     ("HKUDS/CLI-Anything", "Agent-native tools"),
 )
-REPO_PATTERN = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+REPO_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}/[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$")
 SCHEMA = "pythiagrid.open-science.skill-frontier.v1"
 
 def utc_now() -> str:
