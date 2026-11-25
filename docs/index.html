@@ -110,7 +110,7 @@
       <p class="intro"><strong>Working manuscript 01:</strong> <em>Evidence-Carrying Synthesis for Autonomous Agents: Preserving Verified Partial Progress Without Promoting Unsupported Claims.</em> The manuscript remains an internal technical report. It is not peer reviewed, not an arXiv preprint, and not a published performance result.</p>
       <p>The research programme is intended to support full, independently reproducible empirical papers and potentially substantial reusable research software. Venue possibilities include TMLR, leading AI conferences, and JOSS when the relevant eligibility and scientific standards are actually met.</p>
       <p>Research authorship and public-project credit: <strong>Rick Sarkar</strong>. AI assistance is not scientific peer review; future manuscripts must disclose assistance under their chosen venue's policy.</p>
-      <div class="code"><code>python tools/conformance.py<br>python tools/publication_gate.py</code></div>
+      <div class="code"><code>python -m pip install -r requirements-research.txt<br>python tools/conformance.py --spec spec/PGR_CONTRACTS_V0_1.json --fixtures spec/PGR_CONFORMANCE_FIXTURES_V0_1.json --out efad_conformance_receipt.json<br>python tools/publication_gate.py</code></div>
     </div></section>
     <section id="about"><div class="wrap">
       <p class="label">Future of Mary and PythiaGrid</p><h2>A research surface, not a shortcut around safety.</h2>
