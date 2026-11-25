@@ -20,7 +20,17 @@
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
+    "docs/index.html": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
     "LICENSE": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
+    "publication_manifest.json": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
@@ -35,27 +45,17 @@
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
+    "requirements-research.txt": {
+      "class": "PUBLIC_DOC",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
     "RESEARCH_PROGRAM.md": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     },
     "SECURITY.md": {
-      "class": "PUBLIC_DOC",
-      "contains_private_implementation": false,
-      "reconstruction_risk": "LOW"
-    },
-    "UPSTREAM_REFERENCES.md": {
-      "class": "PUBLIC_DOC",
-      "contains_private_implementation": false,
-      "reconstruction_risk": "LOW"
-    },
-    "docs/index.html": {
-      "class": "PUBLIC_DOC",
-      "contains_private_implementation": false,
-      "reconstruction_risk": "LOW"
-    },
-    "publication_manifest.json": {
       "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
@@ -77,6 +77,11 @@
     },
     "tools/publication_gate.py": {
       "class": "REFERENCE_TOOLING",
+      "contains_private_implementation": false,
+      "reconstruction_risk": "LOW"
+    },
+    "UPSTREAM_REFERENCES.md": {
+      "class": "PUBLIC_DOC",
       "contains_private_implementation": false,
       "reconstruction_risk": "LOW"
     }
