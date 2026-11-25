@@ -32,7 +32,7 @@ FORBIDDEN_CONTENT_PATTERNS = {
     "generic_secret_assignment": re.compile(r"(?i)\b(?:password|passwd|api[_-]?key|access[_-]?token|secret)\s*[:=]\s*['\"][^'\"]{8,}['\"]"),
 }
 
-TEXT_SUFFIXES = {"", ".md", ".json", ".py", ".yml", ".yaml", ".txt", ".toml"}
+TEXT_SUFFIXES = {"", ".md", ".json", ".py", ".yml", ".yaml", ".txt", ".toml", ".cff", ".html"}
 MAX_PUBLIC_FILE_BYTES = 200_000
 
 
