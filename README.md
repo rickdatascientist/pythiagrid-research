@@ -64,7 +64,8 @@ The v0.1 public surface includes JSON contracts, synthetic positive/negative cas
 ### Run the public specification
 
 ```bash
-python tools/conformance.py
+python -m pip install -r requirements-research.txt
+python tools/conformance.py --spec spec/PGR_CONTRACTS_V0_1.json --fixtures spec/PGR_CONFORMANCE_FIXTURES_V0_1.json --out efad_conformance_receipt.json
 python tools/publication_gate.py
 ```
 
